@@ -98,5 +98,9 @@ christyApp.controller('inputCtrl', function($rootScope, $scope){
 //Controller that has the stopwatch
 christyApp.controller('stopwatchCtrl', function($scope){
     
+    $scope.startTime = 0;
+    
+    $scope.startTime++;
+    
     
 });//End controller inputCtrl

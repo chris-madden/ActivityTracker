@@ -75,12 +75,14 @@
 
           <!--This page will show how many calories have been consumed today-->
           <!--controller "dailyCalories" is used in this view-->
-          <ion-pane  ng-controller="dailyCalories" >
+          <ion-pane  ng-controller="stopwatchCtrl" >
                 
               <!--All viewable page content within here-->    
               <ion-content>
                   
                   <div align=center>Current time</div>
+                  
+                  <div align=center>{{startTime}}</div>
 
              </ion-content><!--End ion-content-->
 
