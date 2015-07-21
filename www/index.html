@@ -70,7 +70,7 @@
                 
           <!--Header bar is green, this is chosen as it's often considered a colour that means something is natural and healthy-->    
           <ion-header-bar class="bar-balanced">
-            <h1 class="title">Todays Calories</h1>
+            <h1 class="title">Current Activity</h1>
           </ion-header-bar>
 
           <!--This page will show how many calories have been consumed today-->
@@ -79,54 +79,8 @@
                 
               <!--All viewable page content within here-->    
               <ion-content>
-              
-                   <!--Div will display a warning when calorie intake goes above or equals 2000-->
-                   <div align=center style="margin-top: 10px" ng-show="dayCal >= 2000">
                   
-                    <p style="font-size: 25px; color: red" >Warning! High Calorie Intake</p><!--Displays number of calories consumed-->
-                  
-                  </div><!--End div-->
-
-                  <!--Centered div displaying content to user-->
-                  <div align=center style="margin-top: 100px">
-
-                        <!--Styled text with message to user-->
-                        <p style="font-size: 40px">You've Consumed</p>
-
-                  </div><!--End Div-->
-                  
-                  <!--Normal display div for calorie counter-->
-                  <div align=center style="margin-top: 50px" ng-show="dayCal < 2000">
-                  
-                    <p style="font-size: 50px" >{{dayCal}}</p><!--Displays number of calories consumed-->
-                  
-                  </div><!--End Div-->
-                  
-                  <!--Div turns the colour of calorie counter red when calorie intake goes over or is equal to 2000-->
-                  <div align=center style="margin-top: 50px" ng-show="dayCal >= 2000">
-                  
-                    <!--Displays number in red and makes text bigger than normal-->
-                    <p style="font-size: 60px; color: red" >{{dayCal}}</p>
-                  
-                  </div><!--End Div-->
-                  
-                  <!--Centered div displaying content to user-->
-                  <div align=center style="margin-top: 50px; font-size: 20px">
-
-                       <!--Styled text with message to user-->
-                       <p style="font-size: 40px">Calories Today</p>
-
-                  </div><!--End Div-->
-                  
-                  <!--Div containing button which resets counter to 0-->
-                  <div align=center class="padding-left padding-right" style="margin-top: 50px">
-                  
-                      <!--Button to reset calorie counter to 0-->
-                      <button class="button button-block button-balanced" ng-click="reset()">
-                          Reset
-                      </button>
-                  
-                  </div><!--End Div-->
+                  <div align=center>Current time</div>
 
              </ion-content><!--End ion-content-->
 
