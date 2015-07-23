@@ -54,7 +54,7 @@ christyApp.controller('listCtrl', function($rootScope, $scope){
     }//End addCal
     
     //Array of objects which can be viewed from the list page. Consists of picture of food, name of food and the amount of calories in that food
-    $rootScope.items = [{thumbnail: "img/egg.jpg", text: "Boiled Egg", value: 80}, {thumbnail: "img/brownBread.jpg",text: "Brown Bread", value: 100}, {thumbnail: "img/banana.jpg",text: "Banana", value: 90},                            {thumbnail: "img/apple.jpg",text: "Apple", value: 50}, {thumbnail: "img/carrot.jpg",text: "Carrot", value: 50}, {thumbnail: "img/potato.jpg",text: "Potato", value: 90}];
+    $rootScope.items = [{thumbnail: "img/egg.jpg", text: "Boiled Egg", value: 80}, {thumbnail: "img/brownBread.jpg",text: "Brown Bread", value: 100}, {thumbnail: "img/banana.jpg",text: "Banana", value: 90}, {thumbnail: "img/apple.jpg",text: "Apple", value: 50}, {thumbnail: "img/carrot.jpg",text: "Carrot", value: 50}, {thumbnail: "img/potato.jpg",text: "Potato", value: 90}];
     
 });//End controller listCtrl
 
@@ -96,11 +96,56 @@ christyApp.controller('inputCtrl', function($rootScope, $scope){
 });//End controller inputCtrl
 
 //Controller that has the stopwatch
-christyApp.controller('stopwatchCtrl', function($scope){
+christyApp.controller('stopwatchCtrl', function($scope, $interval){
     
+    //Used to cancel timer 
+    var stop;
+    
+    //Initialise start time
     $scope.startTime = 0;
     
-    $scope.startTime++;
+    //function which counts the number of seconds activity is running
+    $scope.start = function(){
+         
+        if ( angular.isDefined(stop) ) return;
+
+        //Initialising stop so it can be canceled later
+        stop = $interval(function(){
+
+             //Increment time by 1 every second
+             $scope.startTime++; 
+
+        }, 1000);
+               
+    };
     
+    //function to pause the timer
+    $scope.pauseTimer = function(){
+        
+        if (angular.isDefined(stop))
+        {
+            $interval.cancel(stop);
+            
+            stop = undefined;
+        }
+      
+    };
+    
+    //function resets timer to 0
+    $scope.reset = function()
+    {
+        
+        //Set variable to 0
+        $scope.startTime = 0;
+        
+        //Stops timer from automatically restarting
+        if (angular.isDefined(stop))
+        {
+            $interval.cancel(stop);
+            
+            stop = undefined;
+        }
+    
+    };
     
 });//End controller inputCtrl
