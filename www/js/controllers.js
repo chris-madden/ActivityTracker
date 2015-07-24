@@ -102,7 +102,9 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
     var stop;
     
     //Initialise start time
-    $scope.startTime = 0;
+    $scope.seconds = 40;
+    $scope.minutes = 59;
+    $scope.hours = 0;
     
     //function which counts the number of seconds activity is running
     $scope.start = function(){
@@ -113,11 +115,37 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
         stop = $interval(function(){
 
              //Increment time by 1 every second
-             $scope.startTime++; 
+             $scope.seconds++; 
+            
+            //Code to count up the minutes
+            //if seconds reaches 60
+            if($scope.seconds > 59)
+            {
+                
+                //Add a minute to the timer
+                $scope.minutes++;
+                
+                //Set seconds back to 0
+                $scope.seconds = 0;
+            
+            }//End if
+            
+            //Code to count up the hours
+            //if seconds reaches 60
+            if($scope.minutes > 59)
+            {
+                
+                //Add an hour to the timer
+                $scope.hours++;
+                
+                //Set minutes back to 0
+                $scope.minutes = 0;
+            
+            }//End if
 
-        }, 1000);
+        }, 1000);//End $interval service
                
-    };
+    };//End $scope.start 
     
     //function to pause the timer
     $scope.pauseTimer = function(){
@@ -127,16 +155,19 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
             $interval.cancel(stop);
             
             stop = undefined;
-        }
+            
+        }//End if
       
-    };
+    };//End $scope.pauseTimer
     
     //function resets timer to 0
     $scope.reset = function()
     {
         
         //Set variable to 0
-        $scope.startTime = 0;
+        $scope.seconds = 0;
+        $scope.minutes = 0;
+        $scope.hours = 0;
         
         //Stops timer from automatically restarting
         if (angular.isDefined(stop))
@@ -144,8 +175,9 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
             $interval.cancel(stop);
             
             stop = undefined;
-        }
+            
+        }//End if
     
-    };
+    };//End $scope.reset
     
 });//End controller inputCtrl
