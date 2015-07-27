@@ -99,12 +99,16 @@ christyApp.controller('inputCtrl', function($rootScope, $scope){
 christyApp.controller('stopwatchCtrl', function($scope, $interval){
     
     //Used to cancel timer 
-    var stop;
+    var stop, sec, min, hr;
+    
+    $scope.seconds = parseInt( window.localStorage['sec']) || 0;
+    $scope.minutes = parseInt(window.localStorage['min']) || 0;
+    $scope.hours = parseInt(window.localStorage['hr']) || 0;
     
     //Initialise start time
-    $scope.seconds = 40;
-    $scope.minutes = 59;
-    $scope.hours = 0;
+    //$scope.seconds = 40;
+    //$scope.minutes = 59;
+    //$scope.hours = 0;
     
     //function which counts the number of seconds activity is running
     $scope.start = function(){
@@ -157,6 +161,11 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
             stop = undefined;
             
         }//End if
+        
+        //Store time locally when pause button is pressed
+        window.localStorage['sec'] = $scope.seconds;
+        window.localStorage['min'] = $scope.minutes;
+        window.localStorage['hr'] = $scope.hours;
       
     };//End $scope.pauseTimer
     
@@ -179,5 +188,16 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
         }//End if
     
     };//End $scope.reset
+    
+    
+    //******Test local storage function 
+    /*$scope.retrieve = function()
+    {
+        
+        $scope.seconds = parseInt(window.localStorage['sec']);
+        $scope.minutes = parseInt(window.localStorage['min']);
+        $scope.hours = parseInt(window.localStorage['hr']);
+    
+    }*/
     
 });//End controller inputCtrl
