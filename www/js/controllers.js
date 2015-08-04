@@ -41,6 +41,8 @@ christyApp.controller('dailyCalories', function($rootScope, $scope){
 */
 christyApp.controller('listCtrl', function($rootScope, $scope){
     
+   //$rootScope.activityArray = JSON.parse(window.localStorage['activityArray'] || '{}');
+     
     //This function adds the value of a particular food when button in list page is clicked to the overall calorie counter $rootScope.dayCal
     //The value from the object is passed in and called digit
     $scope.addCal = function(digit){
@@ -54,46 +56,29 @@ christyApp.controller('listCtrl', function($rootScope, $scope){
     }//End addCal
     
     //Array of objects which can be viewed from the list page. Consists of picture of food, name of food and the amount of calories in that food
-    $rootScope.items = [{thumbnail: "img/egg.jpg", text: "Boiled Egg", value: 80}, {thumbnail: "img/brownBread.jpg",text: "Brown Bread", value: 100}, {thumbnail: "img/banana.jpg",text: "Banana", value: 90}, {thumbnail: "img/apple.jpg",text: "Apple", value: 50}, {thumbnail: "img/carrot.jpg",text: "Carrot", value: 50}, {thumbnail: "img/potato.jpg",text: "Potato", value: 90}];
+    $rootScope.activityArray = [{name: "Read Xeelee", seconds : 0, minutes : 0, hours : 0}];
     
 });//End controller listCtrl
 
 
-/*
-    This controller is used for the input view. It controls the the 2 buttons on the input age. 
-    One button adds a user defined value to the $rootScope and the other pushes new data to the list page.
-*/
+//==================INPUT CONTROLLER ADDS NEW ACTIVITY TO LIST BUT DOES NOT STORE DATA=====================================
+
 christyApp.controller('inputCtrl', function($rootScope, $scope){
     
-    //This function adds what the user manually enters to the $rootScope whichis tracking calorie intake 
-    $scope.addInput = function(manualCal){
-    
-        //Add user input overall calorie intake
-        $rootScope.dayCal += manualCal;
+    $scope.createActivity = function(name)
+    {
         
-        //Store value of $rootScope.dayCal into local storage
-        window.localStorage['name'] =  $rootScope.dayCal;
+         //Push new activity to array
+        $rootScope.activityArray.push({name: name, seconds : 0, minutes : 0, hours : 0});
         
-    };//end function addInput
-    
-    //Function handles pushing new data to the list page
-    $scope.pushToArray = function(manualCal, foodName){
-   
-        //If manualCal and foodName both have values
-        if(manualCal != 0 && foodName != '')
-        {
-            //Push a default user image and the values entered by the user to the items array
-            $rootScope.items.push({thumbnail: "img/user.jpg", text: foodName, value: manualCal});
-            
-        }
-        else//Testing purposes
-        {
-            console.log("Error pushing");
-        }
+        //Save array to local storage
+        window.localStorage['activityArray'] = JSON.stringify(activityArray);
         
-    };//end function addInput
+    }//End createActivity
 
 });//End controller inputCtrl
+
+//============================WORKING CONTROLLER FOR HOME PAGE==========================================
 
 //Controller that has the stopwatch
 christyApp.controller('stopwatchCtrl', function($scope, $interval){
@@ -101,14 +86,10 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
     //Used to cancel timer 
     var stop, sec, min, hr;
     
+    //Initialise start time with saved data or if no saved data then intialise to 0
     $scope.seconds = parseInt( window.localStorage['sec']) || 0;
     $scope.minutes = parseInt(window.localStorage['min']) || 0;
     $scope.hours = parseInt(window.localStorage['hr']) || 0;
-    
-    //Initialise start time
-    //$scope.seconds = 40;
-    //$scope.minutes = 59;
-    //$scope.hours = 0;
     
     //function which counts the number of seconds activity is running
     $scope.start = function(){
@@ -188,16 +169,5 @@ christyApp.controller('stopwatchCtrl', function($scope, $interval){
         }//End if
     
     };//End $scope.reset
-    
-    
-    //******Test local storage function 
-    /*$scope.retrieve = function()
-    {
-        
-        $scope.seconds = parseInt(window.localStorage['sec']);
-        $scope.minutes = parseInt(window.localStorage['min']);
-        $scope.hours = parseInt(window.localStorage['hr']);
-    
-    }*/
     
 });//End controller inputCtrl

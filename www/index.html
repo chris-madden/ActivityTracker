@@ -93,10 +93,6 @@
                   <!--Reset button-->
                   <button type="button" data-ng-click="reset()">Reset</button>
                   
-                  <!--*************Test local storage button***************-->
-                  <button type="button" data-ng-click="retrieve()">Retrieve Data</button>
-
-
              </ion-content><!--End ion-content-->
 
           </ion-pane><!--End ion-pane-->
@@ -115,7 +111,7 @@
 
               <!--Header bar is green, this is chosen as it's often considered a colour that means something is natural and healthy-->    
               <ion-header-bar class="bar-balanced">
-                <h1 class="title">Common Food</h1>
+                <h1 class="title">Recent Activities</h1>
               </ion-header-bar>
 
               <!--This page will show how many calories have been consumed today-->
@@ -127,23 +123,19 @@
                   <ion-list>
                   
                       <!--Conditions for each item, ng-repeat used to reduce amount of code needed, class makes picture the size of thumbnail and aligns it left-->
-                      <ion-item ng-repeat="item in items" class="item-thumbnail-left" >
-                      
-                       <!--Displays the required image from the javascript object-->
-                       <img ng-src="{{item.thumbnail}}"/>
+                      <ion-item ng-repeat="activity in activityArray" >
                         
                        <!--Div stores the name of food and the button, it has margin from top and border removed for cleaner interface-->
                        <div class="item item-button-right" style="margin-top: 15px; border: none;">
                        
                         <!--Diplays the name of the food-->
-                        {{item.text}}
+                        {{activity.name}}
                         
-                            <!--Button which displays the calorie value of food and can be clicked to add the value to the global calorie counter-->
-                            <!--ng-click has a function addCal and passes the value of each food-->
-                            <button class="button button-large button-positive" ng-click="addCal(item.value)">
+                            <!--*******Button functionality not working yet********-->
+                            <!--Button which will bring you to the home screen and show the correct activity-->
+                            <button class="button button-large button-positive" ng-click="">
                                
-                              <!--Displays the value of food on the button-->
-                              {{item.value}}
+                              Start
                               
                             </button>
 
@@ -172,7 +164,7 @@
 
               <!--Header bar is green, this is chosen as it's often considered a colour that means something is natural and healthy-->    
               <ion-header-bar class="bar-balanced">
-                <h1 class="title">Custom Food</h1>
+                <h1 class="title">New Activity</h1>
               </ion-header-bar>
 
               <!--This page will show how many calories have been consumed today-->
@@ -182,7 +174,7 @@
                   <ion-content>
                   
                   <!--Styled prompt for user-->
-                  <h3 align="center" style="margin-top: 20px">Customised Meals</h3>
+                  <h3 align="center" style="margin-top: 20px">Create</h3>
                   
                   <!--List of labels and input types-->
                   <div class="list">
@@ -191,15 +183,7 @@
                       <label class="item item-input">
                         
                         <!--Input displays a placeholder prompting user and stores text into variable foodName-->
-                        <input type="text" placeholder="Name of food" ng-model="foodName">
-                        
-                      </label><!--End label-->
-                      
-                      <!--Label containing input for number-->
-                      <label class="item item-input">
-                        
-                        <!--Input displays a placeholder prompting user and stores a number into variable manualCal-->
-                        <input type="number" placeholder="calories" ng-model="manualCal">
+                        <input type="text" placeholder="Name of activity" ng-model="activityName">
                         
                       </label><!--End label-->
                       
@@ -208,29 +192,21 @@
                   <!--Div containing input for number-->
                   <div class="padding-left padding-right">
                     
-                     <!--Button passes number entered into addInput() function-->
-                     <button class="button button-block button-positive" ng-click="addInput(manualCal)">
+                     <!--*************NO CLICK FUNCTION YET***************-->  
+                     <!--Button-->
+                     <button class="button button-block button-positive" ng-click="createActivity(activityName)">
                      
                       <!--Text that appears on button-->
-                      Add to Daily Intake
+                      Create
                       
                     </button>
                     
                   </div><!--End div-->
                   
-                   <!--Div containing input for text-->
-                  <div class="padding-left padding-right">
-                  
-                     <!--Button passes number and food name into pushToArray() function-->
-                     <button class="button button-block button-positive" ng-click="pushToArray(manualCal, foodName)">
-                     
-                      <!--Text that appears on save button-->
-                      Save to list
+                  <div>
+                      <h1>{{activityName}}</h1>   
+                  </div>
                       
-                    </button>
-                    
-                  </div><!--End div-->
-                  
                  </ion-content><!--End ion-content-->
 
               </ion-pane><!--End ion-pane-->
