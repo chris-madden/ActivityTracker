@@ -1,5 +1,33 @@
+//Module used for local storage
+/*angular.module('ionic.utils', [])
+
+.factory('$localstorage', ['$window', function($window) {
+    
+  return 
+  {
+      
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+      
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+      
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+      
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+      
+  }
+  
+}]);*/
+
 //storing in variable for better readability
-var christyApp = angular.module('calorific', ['ionic']);
+var christyApp = angular.module('activityApp', ['ionic']);
 
 //Config function used to set up routing in app
 christyApp.config(function($stateProvider, $urlRouterProvider) 
@@ -20,7 +48,7 @@ christyApp.config(function($stateProvider, $urlRouterProvider)
             views: {
               'home': {
                 templateUrl: 'home.html',
-                controller: 'dailyCalories'
+                controller: 'stopwatchCtrl'
               }
             }
           })
@@ -30,7 +58,7 @@ christyApp.config(function($stateProvider, $urlRouterProvider)
             views: {
               'list': {
                 templateUrl: 'list.html',
-                controller: 'listCtrl'
+                controller: 'inputCtrl'
               }
             }
           })
@@ -50,10 +78,25 @@ christyApp.config(function($stateProvider, $urlRouterProvider)
 
 });//End config()
 
+/*
+christyApp.run(function($localstorage) {
+
+  $localstorage.set('name', 'Max');
+  console.log($localstorage.get('name'));
+  $localstorage.setObject('post', {
+    name: 'Thoughts',
+    text: 'Today was a good day'
+  });
+
+  var post = $localstorage.getObject('post');
+  var post = $localstorage.getObject('post');
+  console.log(post);
+});*/
+
 christyApp.run(function($ionicPlatform) 
-  {
+{
     
-  $ionicPlatform.ready(function() 
+     $ionicPlatform.ready(function() 
   {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

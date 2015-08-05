@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--Whole of html file is available for use with angularjs-->
-<html ng-app="calorific">
+<html ng-app="activityApp">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -18,7 +18,7 @@
     <script src="js/controllers.js"></script>
   </head>
     
-  <body>
+  <body ng-controller="inputCtrl">
       
       <!--ion-nav-view tags used to keept track of the users navigation history-->
       <ion-nav-view>
@@ -115,7 +115,7 @@
               </ion-header-bar>
 
               <!--This page will show how many calories have been consumed today-->
-              <ion-pane ng-controller="listCtrl">
+              <ion-pane>
 
                   <ion-content><!--Will allow the page to scroll down for list gets too big for one screen-->
                   
@@ -168,7 +168,7 @@
               </ion-header-bar>
 
               <!--This page will show how many calories have been consumed today-->
-              <ion-pane ng-controller="inputCtrl">
+              <ion-pane>
 
                   <!--All viewable page content within here--> 
                   <ion-content>
