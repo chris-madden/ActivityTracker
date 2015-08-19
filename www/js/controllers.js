@@ -102,12 +102,22 @@ christyApp.controller('inputCtrl', function($rootScope){
     //Array must be initialised at the start or else you can't push to array
     $rootScope.activityArray = JSON.parse(window.localStorage['actArray'] || '{}');
     
-    //Array to store activities
-    /*$rootScope.activityArray = [
+    console.log($rootScope.activityArray.length);
+    
+    if(window.localStorage['actArray'] == undefined)
+    {
         
-        //{name: "Read Xeelee", seconds : 0, minutes : 0, hours : 0}
+        console.log("If statement working");
+    
+         //Array to store activities
+        $rootScope.activityArray = [{
+
+            name: "My Actvity", seconds : 0, minutes : 0, hours : 0
+
+        }];
         
-    ];*/
+    }
+   
     
     //Function to push new activites to array
     $rootScope.createActivity = function(name)
